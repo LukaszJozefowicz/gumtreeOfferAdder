@@ -15,11 +15,15 @@ exports.config = {
       rootElement: 'body',
       angular: false,
       smartWait: 5000
+    },
+    MyHelper: {
+      require: './customHelper/myHelper.js'
     }
   },
   include: {
     I: './steps_file.js',
-    mainPage: './pages/startPage.js'
+    mainPage: './pages/startPage.page.js',
+    form: './pages/offerForm.page.js'
   },
   bootstrap: null,
   mocha: {},
