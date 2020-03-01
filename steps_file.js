@@ -20,7 +20,7 @@ module.exports = function() {
       
     },
 
-    fillOfferForm: function(toSellBy, type, areaSize, 
+    fillOfferForm: async function(toSellBy, type, areaSize, 
                             numberOfRooms, numberOfBathrooms, parking, 
                             offerTitle, description, priceTypes, price, 
                             userName, email, phone, address, attachmentsNumber){
@@ -37,16 +37,24 @@ module.exports = function() {
       this.wait(2);
       within({frame: '#description-frame'}, () => {
         this.waitForClickable(form.description, 5);
-        this.click(form.description);
         this.fillIframeField(description);
         this.wait(2);
       });
       this.scrollTo(form.addPictures);this.wait(2);
       this.say('attachmentsNumber: '+ attachmentsNumber );
-      
-      this.say('./pictures/'+attachmentsNumber+'.jpg');
-      this.attachFile(form.addPictures, './pictures/'+attachmentsNumber+'.jpg');this.wait(5);
-      
+      attachmentsNumber++;
+      for(let i = 1; i < attachmentsNumber; i++){
+        this.say('./pictures/'+i+'.jpg');
+        await this.attachFile(form.addPictures, './pictures/'+i+'.jpg');this.wait(2);
+        // if(i > 1){
+        //   for (let j = 1; j < i; j++){
+        //     this.click(form.deletePic);
+        //     this.say('i= '+i+' j= '+j+' deleted');
+        //     this.wait(2);
+        //   }
+        // } combinations for firefox
+      }
+
       this.selectOption(form.priceTypes, priceTypes);
       if(priceTypes === 'Cena'){
         this.fillField(form.price, price);
@@ -55,26 +63,9 @@ module.exports = function() {
       this.fillField(form.email, email);
       this.fillField(form.phone, phone);
       this.fillField(form.address, address);
-      this.click(form.previewButton);
-      pause();
+      this.click(form.addOfferButton);
+      //pause();
     }
 
   });
 }
-
-
-// Po remoncie, częściowo umeblowane
-// - 4 piętro w budynku z 1985 r
-// - pokój dzienny 16,9 m2
-// - sypialnia 12 m2
-// - kuchnia osobna z oknem 9 m2
-// - łazienka 4 m2
-// - loggia
-// - ogrzewanie miejskie.
-// - niski czynsz i koszty eksploatacyjne /350+100/
-// - spółdzielcze własnościowe z Księgą Wieczystą
-
-// Istnieje możliwość połączenia kuchni z pokojem dziennym tworząc salon z aneksem kuchennym.
-
-// Cicha i spokojna okolica z pełną infrastrukturą.
-// W niewielkiej odległości znajduje się PKS, szkoła, sklepy, dla fanów piłki nożnej stadion z boiskiem, sklepy wielobranżowe. 

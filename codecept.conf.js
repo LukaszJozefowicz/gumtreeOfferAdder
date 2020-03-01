@@ -11,10 +11,17 @@ exports.config = {
     Protractor: {
       url: 'https//gumtree.pl',
       driver: 'hosted',
-      browser: 'firefox',
+      browser: 'chrome',
       rootElement: 'body',
       angular: false,
-      smartWait: 5000
+      smartWait: 5000,
+      disableScreenshots: true,
+      capabilities: {
+        'browserName': 'chrome',
+        'goog:chromeOptions': {
+          'args': ['--start-maximized']
+        }
+      },
     },
     MyHelper: {
       require: './customHelper/myHelper.js'

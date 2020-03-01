@@ -3,7 +3,7 @@ var readTextFile = require('read-text-file');
 
 Feature('Dodaj ogłoszenie sprzedaży mieszkania');
 
-Scenario('Dodawanie nowego ogłoszenia', (I) => {
+Scenario('Dodawanie nowego ogłoszenia', async (I) => {
     
     let contentsArray = [ 'województwo:',           // 0
                           'miasto:',                // 1
@@ -32,7 +32,7 @@ Scenario('Dodawanie nowego ogłoszenia', (I) => {
     
     
     I.basicInfo(inp[0], inp[1]);
-    I.fillOfferForm(inp[2], inp[3], inp[4], 
+    await I.fillOfferForm(inp[2], inp[3], inp[4], 
                     inp[5], inp[6], inp[7], 
                     inp[8], inp[9], inp[10], 
                     inp[11], inp[12], inp[13], 

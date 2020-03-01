@@ -14,6 +14,7 @@ module.exports = {
     email: {xpath: "//input[@name='Email']"},
     phone: {xpath: "//input[@name='Phone']"},
     address: {xpath: "//input[@name='Address']"},
-    previewButton: {css: '#postPreview'}
-    //location: function(where){return "//span[text()='"+where+"']"}
+    previewButton: {css: '#postPreview'},
+    deletePic: {xpath: "//ul[@id='thumb-nails']/li[1]/div[1]"},
+    addOfferButton: {css: '#postSubmit'}
 }

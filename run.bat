@@ -1,4 +1,4 @@
 c:\
-cd gumtreeClicker
-npx codeceptjs run --steps --debug
+cd gumtreeOfferAdder
+npx codeceptjs run testFiles/addOffer.test.js --steps --debug
 pause
