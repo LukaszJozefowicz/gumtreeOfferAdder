@@ -1,4 +1,3 @@
-//const mainPage = include('./../pages/loginPage.js');
 var readTextFile = require('read-text-file');
 
 Feature('Dodaj ogłoszenie sprzedaży mieszkania');
@@ -30,8 +29,7 @@ Scenario('Dodawanie nowego ogłoszenia', async (I) => {
     }
     inp.forEach(element => I.say('element: '+element+' length: '+element.length));
     
-    
-    I.basicInfo(inp[0], inp[1]);
+    I.fillBasicInfo(inp[0], inp[1]);
     await I.fillOfferForm(inp[2], inp[3], inp[4], 
                     inp[5], inp[6], inp[7], 
                     inp[8], inp[9], inp[10], 

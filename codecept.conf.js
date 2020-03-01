@@ -1,4 +1,5 @@
 const { setHeadlessWhen } = require('@codeceptjs/configure');
+const selenium = require('selenium-standalone');
 
 // turn on headless mode when running with HEADLESS=true environment variable
 // HEADLESS=true npx codecept run
@@ -15,7 +16,7 @@ exports.config = {
       rootElement: 'body',
       angular: false,
       smartWait: 5000,
-      disableScreenshots: true,
+      //disableScreenshots: true,
       capabilities: {
         'browserName': 'chrome',
         'goog:chromeOptions': {
