@@ -20,7 +20,9 @@ Scenario('Dodawanie nowego ogłoszenia', async (I) => {
                           'email:',                 // 13
                           'telefon:',               // 14
                           'adres:',                 // 15
-                          'ile załączników:'];      // 16
+                          'ile załączników:',       // 16
+                          'emailLogin:',            // 17
+                          'pass:'];                 // 18
     let content = readTextFile.readSync('./input.txt');
     let inp = content.split('|');
     for (let i = 0; i < contentsArray.length; i++){
@@ -29,7 +31,7 @@ Scenario('Dodawanie nowego ogłoszenia', async (I) => {
     }
     inp.forEach(element => I.say('element: '+element+' length: '+element.length));
     
-    I.fillBasicInfo(inp[0], inp[1]);
+    await I.fillBasicInfo(inp[0], inp[1], inp[17], inp[18]);
     await I.fillOfferForm(inp[2], inp[3], inp[4], 
                     inp[5], inp[6], inp[7], 
                     inp[8], inp[9], inp[10], 

@@ -30,4 +30,6 @@ imię: Cezary Szwast |
 email: cszwast@metrohouse.pl |
 telefon: 604951937 |
 adres: PHU Verinex Partner sieci Metrohouse ul. Księcia Witolda 49 lok. 8 50-202 Wrocław COFU901 |
-ile załączników: 5
+ile załączników: 5 |
+emailLogin: lukasz.jozefowicz84@gmail.com |
+pass: ******

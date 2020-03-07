@@ -2,12 +2,34 @@
 let startPage = require('./pages/startPage.page.js');
 let form = require('./pages/offerForm.page.js');
 const selenium = require('selenium-standalone');
+let isLogged = false;
 
 module.exports = function() {
   return actor({
 
-    fillBasicInfo: function(region, town){
+    login: function(email, pass){ 
+      this.moveCursorTo(startPage.myGumtree);
+      this.click(startPage.contextMenu);
+      this.waitInUrl('login.html', 5);
+      this.fillField(startPage.email, email);
+      this.wait(1);
+      this.fillField(startPage.pass, secret(pass));
+      this.waitForClickable(startPage.loginButton, 5);
+      this.click(startPage.loginButton);
+      this.wait(2);
+    },
+
+    fillBasicInfo: async function(region, town, login, pass){
       this.amOnPage('https://gumtree.pl'); 
+      this.say('isLogged before check: '+ isLogged);
+      let checkIfLogged = await this.grabTextFrom(startPage.myGumtree);
+      this.say('checkIfLogged: '+ checkIfLogged+ ' length: ' +checkIfLogged.length);
+      if(checkIfLogged.trim() === 'Moje Gumtree'){
+        this.login(login, pass);
+        isLogged = true;
+      }
+      this.say('isLogged after check: '+ isLogged);
+      this.wait(1);
       this.click(startPage.addOffer); 
       this.wait(1);
       this.waitForClickable(startPage.estates, 5);
@@ -59,24 +81,16 @@ module.exports = function() {
         this.fillField(form.price, price);
       }
       this.fillField(form.userName, userName);
-      this.fillField(form.email, email);
+      this.say('isLogged: '+ isLogged);
+      if(isLogged === false){  
+        this.fillField(form.email, email);
+      }
       this.fillField(form.phone, phone);
       this.fillField(form.address, address);
+      //this.click(form.previewButton);
       this.click(form.addOfferButton);
-      pause();
+      //pause();
+      this.wait(5);
     },
-    
-    login: function(email, pass){
-      this.amOnPage('https://gumtree.pl'); 
-      this.moveCursorTo(startPage.myGumtree);
-      this.click(startPage.contextMenu);
-      this.waitInUrl('login.html', 5);
-      this.fillField(startPage.email, email);
-      this.wait(1);
-      this.fillField(startPage.pass, secret(pass));
-      this.wait(1);
-      this.click(startPage.loginButton);
-      this.wait(4);
-    }
   });
 }
