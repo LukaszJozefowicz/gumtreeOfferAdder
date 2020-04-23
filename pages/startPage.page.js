@@ -7,5 +7,7 @@ module.exports = {
     addOffer: {xpath: "//span[contains(text(), 'Dodaj ogłoszenie')]"},
     estates: {xpath: "//span[text()='Nieruchomości']"},
     sellHouses: {xpath: "//span[text()='mieszkania i domy - sprzedam']"},
+    plot: {xpath: "//span[text()='działki']"},
+    office: {xpath: "//span[text()='lokal i biuro']"},
     location: function(where){return "//span[text()='"+where+"']"}
 }

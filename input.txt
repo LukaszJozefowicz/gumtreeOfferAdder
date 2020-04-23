@@ -1,3 +1,4 @@
+typ ogłoszenia: mieszkania i domy - sprzedam |
 województwo: Dolnośląskie |
 miasto: Wrocław |
 na sprzedaż przez: Agencja |
@@ -26,10 +27,10 @@ Cicha i spokojna okolica z pełną infrastrukturą.
 W niewielkiej odległości znajduje się PKS, szkoła, sklepy, dla fanów piłki nożnej stadion z boiskiem, sklepy wielobranżowe. |
 wybór cena: Cena |
 ile cena: 200000 |
-imię: Cezary Szwast |
-email: cszwast@metrohouse.pl |
-telefon: 604951937 |
-adres: PHU Verinex Partner sieci Metrohouse ul. Księcia Witolda 49 lok. 8 50-202 Wrocław COFU901 |
+imię: John Smith |
+email: some.mail@somemail.pl |
+telefon: 666666666 |
+adres: some address
 ile załączników: 5 |
-emailLogin: lukasz.jozefowicz84@gmail.com |
+emailLogin: valid.email@gmail.com |
 pass: ******

@@ -19,7 +19,7 @@ module.exports = function() {
       this.wait(2);
     },
 
-    fillBasicInfo: async function(region, town, login, pass){
+    fillBasicInfo: async function(offerType, region, town, login, pass){
       this.amOnPage('https://gumtree.pl'); 
       this.say('isLogged before check: '+ isLogged);
       let checkIfLogged = await this.grabTextFrom(startPage.myGumtree);
@@ -35,9 +35,25 @@ module.exports = function() {
       this.waitForClickable(startPage.estates, 5);
       this.wait(1);
       this.click(startPage.estates);    
-      this.waitForClickable(startPage.sellHouses, 2);
-      this.wait(1);
-      this.click(startPage.sellHouses);  
+      
+      switch(offerType){
+        case 'mieszkania i domy - sprzedam':
+            this.waitForClickable(startPage.sellHouses, 2);
+            this.wait(1);
+            this.click(startPage.sellHouses);
+            break;
+        case 'działki':
+            this.waitForClickable(startPage.plot, 2);
+            this.wait(1);
+            this.click(startPage.plot);
+            break;
+        case 'lokal i biuro':
+            this.waitForClickable(startPage.plot, 2);
+            this.wait(1);
+            this.click(startPage.office);
+            break;
+      }
+
       this.waitForClickable(startPage.location(region), 2);   
       this.wait(1);
       this.click(startPage.location(region)); 
@@ -48,18 +64,29 @@ module.exports = function() {
       
     },
 
-    fillOfferForm: async function(toSellBy, type, areaSize, 
+    fillOfferForm: async function(offerType, toSellBy, type, areaSize, 
                             numberOfRooms, numberOfBathrooms, parking, 
                             offerTitle, description, priceTypes, price, 
                             userName, email, phone, address, attachmentsNumber){
 
-      this.waitForClickable(form.toSellBy, 5);
-      this.selectOption(form.toSellBy, toSellBy);
-      this.selectOption(form.type, type);
-      this.fillField(form.areaSize, areaSize);
-      this.selectOption(form.numberOfRooms, numberOfRooms);
-      this.selectOption(form.numberOfBathrooms, numberOfBathrooms);
-      this.selectOption(form.parking, parking);
+      if (offerType === 'lokal i biuro'){
+          this.waitForClickable(form.forRentBy, 5);
+          this.selectOption(form.forRentBy, toSellBy);
+      } else {
+          this.waitForClickable(form.toSellBy, 5);
+          this.selectOption(form.toSellBy, toSellBy);
+      }
+      if (offerType === 'mieszkania i domy - sprzedam'){
+          this.selectOption(form.type, type);
+          this.fillField(form.areaSize, areaSize);
+          this.selectOption(form.numberOfRooms, numberOfRooms);
+          this.selectOption(form.numberOfBathrooms, numberOfBathrooms);
+          this.selectOption(form.parking, parking);
+      }
+      if (offerType === 'lokal i biuro'){
+          this.fillField(form.areaSize, areaSize);
+      }
+
       this.fillField(form.offerTitle, offerTitle);
       this.scrollTo(form.offerTitle);
       this.wait(2);
@@ -87,10 +114,8 @@ module.exports = function() {
       }
       this.fillField(form.phone, phone);
       this.fillField(form.address, address);
-      //this.click(form.previewButton);
       this.click(form.addOfferButton);
-      //pause();
-      this.wait(5);
+      this.wait(3);
     },
   });
 }

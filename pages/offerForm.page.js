@@ -1,5 +1,6 @@
 module.exports = {
     toSellBy: {xpath: "//select[@name='DwellingForSaleBy']"},
+    forRentBy: {xpath: "//select[@name='ForRentBy']"},
     type: {xpath: "//select[@name='DwellingType']"},
     areaSize: {xpath: "//input[@name='AreaInMeters']"},
     numberOfRooms: {xpath: "//select[@name='NumberRooms']"},
