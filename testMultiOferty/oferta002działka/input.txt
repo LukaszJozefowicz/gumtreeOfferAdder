@@ -1,0 +1,22 @@
+﻿typ ogłoszenia: działki |
+województwo: Dolnośląskie |
+miasto: Wrocław |
+na sprzedaż przez: Właściciel |
+rodzaj nieruchomości:  |
+wielkość (m2):  |
+liczba pokoi:  |
+liczba łazienek: nie szkodzi jak tu będzie coś |
+parking:  |
+tytuł ogłoszenia: testowa oferta działki |
+opis: opis oferty działki
+
+może zawierać wiele linii |
+wybór cena: Proszę o kontakt |
+ile cena:  |
+imię: John Smith |
+email: some.mail@somemail.pl |
+telefon: 777777777 |
+adres: some address |
+ile załączników: 3 |
+emailLogin: lukasz.jozefowicz84@gmail.com |
+pass: ***

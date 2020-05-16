@@ -1,10 +1,6 @@
 var readTextFile = require('read-text-file');
 
-Feature('Dodaj ogłoszenie sprzedaży mieszkania');
-
-Scenario('Dodawanie nowego ogłoszenia', async (I) => {
-    
-    let contentsArray = [ 'typ ogłoszenia:',        // 0
+const contentsArray =     ['typ ogłoszenia:',        // 0
                           'województwo:',           // 1
                           'miasto:',                // 2
                           'na sprzedaż przez:',     // 3
@@ -30,7 +26,14 @@ Scenario('Dodawanie nowego ogłoszenia', async (I) => {
       inp[i] = inp[i].replace(contentsArray[i], ' ');
       inp[i] = inp[i].trim();
     }
-    inp.forEach(element => I.say('element: '+element+' length: '+element.length));
+    //inp.forEach(element => console.log('element: '+element+' length: '+element.length));
+
+Feature('Dodawanie nowego ogłoszenia: \n' + contentsArray[0] + ' ' + inp[0]+
+                                      '\n' + contentsArray[2] + ' ' + inp[2]+
+                                      '\n' + contentsArray[9] + ' ' + inp[9]+
+                                      '\n' + contentsArray[17] + ' ' + inp[17]);
+
+Scenario('Uruchamiam przeglądarkę', async (I) => {
     
     await I.fillBasicInfo(inp[0], inp[1], inp[2], inp[18], inp[19]);
     await I.fillOfferForm(inp[0], inp[3], inp[4], 

@@ -1,0 +1,22 @@
+﻿typ ogłoszenia: mieszkania i domy - sprzedam |
+województwo: Dolnośląskie |
+miasto: Wrocław |
+na sprzedaż przez: Agencja |
+rodzaj nieruchomości: Dom |
+wielkość (m2): 40 |
+liczba pokoi: 3 |
+liczba łazienek: 1 łazienka |
+parking: Garaż |
+tytuł ogłoszenia: testowa oferta mieszkanie |
+opis: opis oferty mieszkanie
+
+może zawierać wiele linii |
+wybór cena: Cena |
+ile cena: 200000 |
+imię: John Smith |
+email: some.mail@somemail.pl |
+telefon: 555555555 |
+adres: some address |
+ile załączników: 2 |
+emailLogin: lukasz.jozefowicz84@gmail.com |
+pass: ***

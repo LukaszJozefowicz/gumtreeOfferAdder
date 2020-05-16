@@ -9,6 +9,7 @@ module.exports = function() {
 
     login: function(email, pass){ 
       this.moveCursorTo(startPage.myGumtree);
+      this.waitForClickable(startPage.myGumtree, 5);
       this.click(startPage.contextMenu);
       this.waitInUrl('login.html', 5);
       this.fillField(startPage.email, email);
