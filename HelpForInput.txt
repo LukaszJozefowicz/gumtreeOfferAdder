@@ -1,0 +1,112 @@
+Plik input.txt jest podzielony na 20 sekcji oddzielonych znakiem |
+Poniżej objaśnienie każdej wartości 
+
+
+1. typ ogłoszenia: dopuszczalne wartości: 
+ - mieszkania i domy - sprzedam
+ - działki
+ - lokal i biuro
+
+2. województwo: nazwa województwa tak jak na liście w Gumtree. Dopuszczalne wartości:
+ - Dolnośląskie
+ - Kujawsko - pomorskie
+ - Lubelskie
+ - Lubuskie
+ - Łódzkie
+ - Małopolskie
+ - Mazowieckie
+ - Opolskie
+ - Podkarpackie
+ - Podlaskie
+ - Pomorskie
+ - Śląskie
+ - Świętokrzyskie
+ - Warmińsko-mazurskie
+ - Wielkopolskie
+ - Zachodniopomorskie
+
+3. miasto: nazwa miasta tak jak na liście w Gumtree.
+
+4. na sprzedaż przez: Dopusczalne wartości:
+ - Właściciel
+ - Agencja
+
+5. rodzaj nieruchomości: Dla działek i lokal/biuro można zostawić pustą wartość. Dopusczalne wartości:
+ - Mieszkanie
+ - Dom
+ - Inne
+
+6. wielkość (m2): Dla działek można zostawić pustą wartość. Liczba do wpisania
+
+7. liczba pokoi: Dla działek i lokal/biuro można zostawić pustą wartość. Dopuszczalne wartości:
+ - Kawalerka lub garsoniera
+ - 2 pokoje
+ - 3 pokoje
+ - 4 pokoje
+ - 5 pokoi
+ - 6 lub więcej pokoi
+
+8. liczba łazienek: Dla działek i lokal/biuro można zostawić pustą wartość. Dopuszczalne wartości:
+ - 1 łazienka
+ - 2 łazienki
+ - 3 łazienki
+ - 4 lub więcej łazienek
+
+9. parking: Dla działek i lokal/biuro można zostawić pustą wartość. Dopuszczalne wartości:
+ - Garaż
+ - Kryty
+ - Ulica
+ - Brak
+
+10. tytuł ogłoszenia: tytuł ogłoszenia do wpisania
+
+11. opis: opis ogłoszenia
+
+12. wybór cena: dopuszczalne wartości:
+ - Cena
+ - Proszę o kontakt
+ - Wymiana/zamiana
+
+13. ile cena: kwota do wpisania tylko w przypadku Wybór cena: Cena
+
+14. imię: imię do wpisania
+
+15. email: email do wpisania
+
+16. telefon: nr telefonu do wpisania
+
+17. adres: adres do wpisania
+
+18. ile załączników: ile załączników ma być dodanych z folderu C:\gumtreeOfferAdder\pictures. 
+Załączniki muszą mieć nazwy 1.jpg, 2.jpg, 3.jpg itd ponumerowane według kolejności dodawania
+
+19. emailLogin: email do zalogowania na gumtree
+
+20. pass: hasło do gumtree
+
+
+--------------------------------------------------------------------------------
+Poniżej wzór pliku input.txt, jaki musi być zachowany dla KAŻDEGO typu oferty. Przy czym 
+tam gdzie jest 'wartość' należy wpisać odpowiednią wartość lub zostawić puste jeśli pole jest
+nie wymagane. Bardzo ważne jest rozmieszczenie znaków | na końcu każdej wartości 
+(shitf+klawisz nad enterem i pod backspace)
+
+województwo: wartość |
+miasto: wartość |
+na sprzedaż przez: wartość |
+rodzaj nieruchomości: wartość |
+wielkość (m2): wartość |
+liczba pokoi: wartość |
+liczba łazienek: wartość |
+parking: wartość |
+tytuł ogłoszenia: wartość |
+opis: wartość |
+wybór cena: wartość |
+ile cena:  wartość  |
+imię: wartość |
+email: wartość |
+telefon: wartość |
+adres: wartość |
+ile załączników:  wartość |
+emailLogin: wartość |
+pass: wartość
