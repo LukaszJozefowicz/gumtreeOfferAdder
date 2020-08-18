@@ -28,37 +28,25 @@ const contentsArray =     ['typ ogłoszenia:',       // 0
       inp[i] = inp[i].replace(contentsArray[i], ' ');
       inp[i] = inp[i].trim();
     }
-    //inp.forEach(element => console.log('element: '+element+' length: '+element.length));
 
-Feature('Dodawanie nowego ogłoszenia: \n' + contentsArray[0] + ' ' + inp[0]+
-                                      '\n' + contentsArray[2] + ' ' + inp[2] + ' ' + inp[20]+
-                                      '\n' + contentsArray[9] + ' ' + inp[9]+
-                                      '\n' + contentsArray[17] + ' ' + inp[17]);
+    // let howManyToDelete = readTextFile.readSync('./ileOfertDoUsuniecia.txt');
+    // let howMany = parseInt(howManyToDelete.trim());
+
+
+Feature('Usuwanie wszystkich ogłoszeń na koncie \n' );
 
 Scenario('Uruchamiam przeglądarkę', async (I) => {
-    
-    await I.fillBasicInfo(inp[0], inp[1], inp[2], inp[20], inp[18], inp[19]);
-    await I.fillOfferForm(inp[0], inp[3], inp[4], 
-                    inp[5], inp[6], inp[7], 
-                    inp[8], inp[9], inp[10], 
-                    inp[11], inp[12], inp[13], 
-                    inp[14], inp[15], inp[16], inp[17]);
+    await I.deleteAllOffers(inp[18], inp[19]);
 });
 
-Before((I) => {
-  // try{
-  //   console.log('Usuwam plik wynik.txt\n')
-  //   fs.unlinkSync('wynik.txt')
-  // } catch(err) {
-  //   console.log('nie udało się usunąć pliku wynik.txt');
-  // }
+// After((I) => {
     
-    if (!fs.existsSync('wynikiDodawaniaOfert.txt')){
-      fs.writeFile('wynikiDodawaniaOfert.txt', 'Wyniki dodawania ofert:\n', (err) => {
-        if (err) throw err;
-        console.log('Utworzono plik z wynikami dodawania ofert');
-      });
-    }
+//     if (!fs.existsSync('wynik.txt')){
+//       fs.writeFile('wynik.txt', 'Wyniki dodawania ofert:\n', (err) => {
+//         if (err) throw err;
+//         console.log('Utworzono plik z wynikami dodawania ofert');
+//       });
+//     }
 
     
-});
+// });

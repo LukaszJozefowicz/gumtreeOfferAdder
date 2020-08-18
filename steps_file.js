@@ -7,20 +7,22 @@ let isLogged = false;
 module.exports = function() {
   return actor({
 
-    login: function(email, pass){ 
+    login: function(email, pass){
+      this.waitForVisible(startPage.myGumtree, 10); 
+      this.wait(2);
       this.moveCursorTo(startPage.myGumtree);
-      this.waitForClickable(startPage.myGumtree, 5);
+      this.waitForClickable(startPage.myGumtree, 10);
       this.click(startPage.contextMenu);
-      this.waitInUrl('login.html', 5);
+      this.waitInUrl('login.html', 10);
       this.fillField(startPage.email, email);
-      this.wait(1);
+      this.wait(3);
       this.fillField(startPage.pass, secret(pass));
-      this.waitForClickable(startPage.loginButton, 5);
+      this.waitForClickable(startPage.loginButton, 10);
       this.click(startPage.loginButton);
       this.wait(2);
     },
 
-    fillBasicInfo: async function(offerType, region, town, login, pass){
+    fillBasicInfo: async function(offerType, region, town, district, login, pass){
       this.amOnPage('https://gumtree.pl'); 
       this.say('isLogged before check: '+ isLogged);
       let checkIfLogged = await this.grabTextFrom(startPage.myGumtree);
@@ -30,38 +32,57 @@ module.exports = function() {
         isLogged = true;
       }
       this.say('isLogged after check: '+ isLogged);
-      this.wait(1);
+      this.wait(3);
       this.click(startPage.addOffer); 
-      this.wait(1);
-      this.waitForClickable(startPage.estates, 5);
-      this.wait(1);
-      this.click(startPage.estates);    
-      
+      this.wait(3);
+      if(offerType === 'wyposażenie wnętrz'){
+        this.waitForClickable(startPage.garden, 10);
+        this.wait(1);
+        this.click(startPage.garden); 
+      } else {
+        this.waitForClickable(startPage.estates, 10);
+        this.wait(1);
+        this.click(startPage.estates);    
+      }
+
       switch(offerType){
         case 'mieszkania i domy - sprzedam':
-            this.waitForClickable(startPage.sellHouses, 2);
+            this.waitForClickable(startPage.sellHouses, 10);
             this.wait(1);
             this.click(startPage.sellHouses);
             break;
         case 'działki':
-            this.waitForClickable(startPage.plot, 2);
+            this.waitForClickable(startPage.plot, 10);
             this.wait(1);
             this.click(startPage.plot);
             break;
         case 'lokal i biuro':
-            this.waitForClickable(startPage.plot, 2);
+            this.waitForClickable(startPage.office, 10);
             this.wait(1);
             this.click(startPage.office);
             break;
+        case 'wyposażenie wnętrz':
+            this.waitForClickable(startPage.location('wyposażenie wnętrz'), 10);
+            this.wait(1);
+            this.click(startPage.location("wyposażenie wnętrz"));
+            this.waitForClickable(startPage.location('dekoracje'), 10);
+            this.wait(1);
+            this.click(startPage.location("dekoracje"));
+            break;
       }
 
-      this.waitForClickable(startPage.location(region), 2);   
+      this.waitForClickable(startPage.location(region), 10);   
       this.wait(1);
       this.click(startPage.location(region)); 
-      this.waitForClickable(startPage.location(town), 2);     
+      this.waitForClickable(startPage.location(town), 10);     
       this.wait(1);
       this.click(startPage.location(town));
-      this.waitInUrl('/post.html', 5);
+      if(region === 'Mazowieckie'){
+        this.waitForClickable(startPage.location(district), 10);     
+        this.wait(1);
+        this.click(startPage.location(district));
+      }
+      this.waitInUrl('/post.html', 10);
       
     },
 
@@ -71,10 +92,10 @@ module.exports = function() {
                             userName, email, phone, address, attachmentsNumber){
 
       if (offerType === 'lokal i biuro'){
-          this.waitForClickable(form.forRentBy, 5);
+          this.waitForClickable(form.forRentBy, 10);
           this.selectOption(form.forRentBy, toSellBy);
-      } else {
-          this.waitForClickable(form.toSellBy, 5);
+      } else if (offerType !== 'wyposażenie wnętrz'){
+          this.waitForClickable(form.toSellBy, 10);
           this.selectOption(form.toSellBy, toSellBy);
       }
       if (offerType === 'mieszkania i domy - sprzedam'){
@@ -87,12 +108,12 @@ module.exports = function() {
       if (offerType === 'lokal i biuro'){
           this.fillField(form.areaSize, areaSize);
       }
-
+      this.waitForVisible(form.offerTitle, 10);
       this.fillField(form.offerTitle, offerTitle);
       this.scrollTo(form.offerTitle);
       this.wait(2);
       within({frame: '#description-frame'}, () => {
-        this.waitForClickable(form.description, 5);
+        this.waitForClickable(form.description, 10);
         this.fillIframeField(description);
         this.wait(2);
       });
@@ -115,8 +136,36 @@ module.exports = function() {
       }
       this.fillField(form.phone, phone);
       this.fillField(form.address, address);
-      this.click(form.addOfferButton);
+      this.moveCursorTo(form.addOfferButton);
+      this.wait(1);
+      this.waitForClickable(form.addOfferButton, 10);
+      //this.click(form.addOfferButton);
       this.wait(3);
     },
+
+    deleteAllOffers: async function(login, pass){
+      this.amOnPage('https://gumtree.pl'); 
+      this.say('isLogged before check: '+ isLogged);
+      let checkIfLogged = await this.grabTextFrom(startPage.myGumtree);
+      this.say('checkIfLogged: '+ checkIfLogged+ ' length: ' +checkIfLogged.length);
+      if(checkIfLogged.trim() === 'Moje Gumtree'){
+        this.login(login, pass);
+        isLogged = true;
+      }
+      this.say('isLogged after check: '+ isLogged);
+      this.wait(3);
+      this.moveCursorTo(startPage.myGumtree);
+      this.wait(3);
+      this.waitForClickable(startPage.myAds, 10);
+      this.click(startPage.myAds);
+      for(let i = 0; i < 1000; i++){
+        this.wait(2);
+        this.waitForClickable(startPage.deleteFirst, 10);
+        this.click(startPage.deleteFirst);
+        this.acceptPopup();
+      }
+      this.wait(3);
+      this.say('Usuwanie ofert zakończone');
+    }
   });
 }

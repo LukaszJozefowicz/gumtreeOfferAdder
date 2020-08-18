@@ -10,7 +10,7 @@ if exist c:\gumtreeOfferAdder\pictures\1.jpg del /s /q c:\gumtreeOfferAdder\pict
 xcopy pictures C:\gumtreeOfferAdder\pictures /S/I/F/Y
 cd c:\gumtreeOfferAdder
 echo.
-echo 3. zabijam proces chromedrivera
+echo 3. zabijam proces sterownika przegladarki
 echo.
 taskkill /f /t /im 2.43-x64-chromedriver
 echo.

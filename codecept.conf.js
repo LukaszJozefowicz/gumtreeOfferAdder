@@ -34,6 +34,7 @@ exports.config = {
     form: './pages/offerForm.page.js'
   },
   bootstrap: null,
+  //teardown: './customPlugin/customPlugin.js',
   mocha: {},
   name: 'gumtreeClicker',
   translation: 'pl-PL',
@@ -46,6 +47,10 @@ exports.config = {
       enabled: false
     },
     screenshotOnFail: {
+      enabled: true
+    },
+    customPlugin: {
+      require: './customPlugin/customPlugin.js',
       enabled: true
     }
   }

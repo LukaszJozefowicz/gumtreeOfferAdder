@@ -19,4 +19,5 @@ telefon: 888888888 |
 adres: some address |
 ile załączników: 1 |
 emailLogin: lukasz.jozefowicz84@gmail.com |
-pass: ***
+pass: *** |
+dzielnica: 

@@ -1,0 +1,17 @@
+Wyniki dodawania ofert:
+
+Oferta o tytule: "testowa oferta działki" dodana prawidłowo
+
+Oferta o tytule: "testowa oferta lokal i biuro" dodana prawidłowo
+
+Błąd przy dodawaniu oferty o tytule: "testowa oferta lokal i biuro"
+typ: lokal i biuro
+miasto: Wrocław
+
+Oferta o tytule: "testowa oferta lokal i biuro" dodana prawidłowo
+
+Błąd przy dodawaniu oferty o tytule: "testowa oferta lokal i biuro"
+typ: lokal i biuro
+miasto: Wrocław
+
+Oferta o tytule: "testowa oferta lokal i biuro" dodana prawidłowo

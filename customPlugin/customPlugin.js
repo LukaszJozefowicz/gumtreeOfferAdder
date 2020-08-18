@@ -1,5 +1,6 @@
-var readTextFile = require('read-text-file');
 var fs = require('fs');
+var readTextFile = require('read-text-file');
+const event = require('codeceptjs').event;
 
 const contentsArray =     ['typ ogłoszenia:',       // 0
                           'województwo:',           // 1
@@ -28,37 +29,32 @@ const contentsArray =     ['typ ogłoszenia:',       // 0
       inp[i] = inp[i].replace(contentsArray[i], ' ');
       inp[i] = inp[i].trim();
     }
-    //inp.forEach(element => console.log('element: '+element+' length: '+element.length));
 
-Feature('Dodawanie nowego ogłoszenia: \n' + contentsArray[0] + ' ' + inp[0]+
-                                      '\n' + contentsArray[2] + ' ' + inp[2] + ' ' + inp[20]+
-                                      '\n' + contentsArray[9] + ' ' + inp[9]+
-                                      '\n' + contentsArray[17] + ' ' + inp[17]);
-
-Scenario('Uruchamiam przeglądarkę', async (I) => {
-    
-    await I.fillBasicInfo(inp[0], inp[1], inp[2], inp[20], inp[18], inp[19]);
-    await I.fillOfferForm(inp[0], inp[3], inp[4], 
-                    inp[5], inp[6], inp[7], 
-                    inp[8], inp[9], inp[10], 
-                    inp[11], inp[12], inp[13], 
-                    inp[14], inp[15], inp[16], inp[17]);
-});
-
-Before((I) => {
-  // try{
-  //   console.log('Usuwam plik wynik.txt\n')
-  //   fs.unlinkSync('wynik.txt')
-  // } catch(err) {
-  //   console.log('nie udało się usunąć pliku wynik.txt');
-  // }
-    
-    if (!fs.existsSync('wynikiDodawaniaOfert.txt')){
-      fs.writeFile('wynikiDodawaniaOfert.txt', 'Wyniki dodawania ofert:\n', (err) => {
-        if (err) throw err;
-        console.log('Utworzono plik z wynikami dodawania ofert');
+module.exports = function() {
+    event.dispatcher.on(event.test.passed, function () {
+        console.log('Event test pass');
+        if (fs.existsSync('wynikiDodawaniaOfert.txt')){
+              fs.appendFile('wynikiDodawaniaOfert.txt', '\nDodano: \"'+inp[9]+ '\"\n', (err) => {
+                if (err) throw err;              
+            });
+        }
       });
-    }
-
-    
-});
+    event.dispatcher.on(event.test.failed, function () {
+        console.log('Event test fail');
+        if (fs.existsSync('wynikiDodawaniaOfert.txt')){
+                fs.appendFile('wynikiDodawaniaOfert.txt', '\nBłąd: \"'+inp[9]+'\n', (err) => {
+                    if (err) throw err;              
+                });
+        }
+    });
+}
+// module.exports = function() {
+//       event.dispatcher.on(event.test.failed, function () {
+//         console.log('Event test fail');
+//         if (fs.existsSync('wynik.txt')){
+//               fs.appendFile('wynik.txt', '\nBłąd przy dodawaniu oferty o tytule: \"'+inp[9]+ '\"', (err) => {
+//                 if (err) throw err;              
+//             });
+//         }
+//       });
+// }
